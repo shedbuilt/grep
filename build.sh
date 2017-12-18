@@ -1,4 +1,4 @@
 #!/bin/bash
-./configure --prefix=/usr --bindir=/bin
-make -j $SHED_NUMJOBS
-make DESTDIR=${SHED_FAKEROOT} install
+./configure --prefix=/usr --bindir=/bin || exit 1
+make -j $SHED_NUMJOBS || exit 1
+make "DESTDIR=${SHED_FAKEROOT}" install
