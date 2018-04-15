@@ -1,11 +1,11 @@
 #!/bin/bash
-case "$SHED_BUILDMODE" in
+case "$SHED_BUILD_MODE" in
     toolchain)
-        ./configure --prefix=/tools || return 1
+        ./configure --prefix=/tools || exit 1
         ;;
     *)
-        ./configure --prefix=/usr --bindir=/bin || return 1
+        ./configure --prefix=/usr --bindir=/bin || exit 1
         ;;
 esac
-make -j $SHED_NUMJOBS || return 1
-make DESTDIR="$SHED_FAKEROOT" install || return 1
+make -j $SHED_NUM_JOBS &&
+make DESTDIR="$SHED_FAKE_ROOT" install
